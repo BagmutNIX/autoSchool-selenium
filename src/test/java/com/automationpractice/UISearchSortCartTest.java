@@ -1,8 +1,10 @@
 package com.automationpractice;
 
 import com.core.BaseTest;
+import com.google.common.collect.Ordering;
 import com.sun.org.glassfish.gmbal.Description;
 import com.sun.xml.internal.bind.v2.TODO;
+import net.bytebuddy.description.type.TypeDescription;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -10,7 +12,11 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+
+import static java.util.Comparator.*;
 
 public class UISearchSortCartTest extends BaseTest {
 
@@ -39,15 +45,23 @@ public class UISearchSortCartTest extends BaseTest {
         // цене - если у товара есть скидка, нужно смотреть на старую цену)
         //TODO with old price (пока что начала делать с просто прайсом, т.к. так проще)
         List<WebElement> priceElement = driver.findElements(By.xpath("//*[@class='price product-price']"));
+        List<Double> priceNumber = new ArrayList<Double>();
 
         for (int i = 0; i < priceElement.size(); i++) {
-            String priceText = priceElement.get(i).getText().replace("$", "");
-            System.out.println(priceElement.get(i).getText());
+            String priceText = priceElement.get(i).getText();//
+            if (priceText.isEmpty())
+                continue;
+            priceText = priceText.replace("$", "");
+            System.out.println(priceText);
+            priceNumber.add(Double.valueOf(priceText));
         }
 
-        List<Float> priceNumber = new ArrayList<Float>();
-        for (int i = 0; i < priceElement.size(); i++) {
-            //priceNumber.add(priceElement.get(i).getText().replace("$", ""));
+        //Collections.sort(priceNumber);
+        boolean sorted = Ordering.natural().isOrdered(priceNumber);
+
+        System.out.println();
+        for (int i = 0; i < priceNumber.size(); i++) {
+            System.out.println(priceNumber.get(i));
         }
 
         //List<Double> priceToDouble;
@@ -56,6 +70,5 @@ public class UISearchSortCartTest extends BaseTest {
         // 7. добавляем его в корзину
         // 8. открываем корзину и сравниваем название и цену в "Unit price" на соответствие с сохраненными значениями
         // 9. используя аннотацию параметризации тестов, добавьте кроме 'Summer' сценарии поиска 'Dress' и 't-shirt'
-
     }
 }
