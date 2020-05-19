@@ -56,13 +56,18 @@ public class UISearchSortCartTest extends BaseTest {
             priceNumber.add(Double.valueOf(priceText));
         }
 
-        //Collections.sort(priceNumber);
-        boolean sorted = Ordering.natural().isOrdered(priceNumber);
-
         System.out.println();
         for (int i = 0; i < priceNumber.size(); i++) {
             System.out.println(priceNumber.get(i));
         }
+
+        //Collections.sort(priceNumber);
+        boolean isSorted = Ordering.natural().isOrdered(priceNumber);
+        System.out.println("Is sorted: " + isSorted);
+
+
+        Assert.assertEquals(isSorted, true);
+        if (isSorted = false) System.out.println("Prices are sorted incorrect");
 
         //List<Double> priceToDouble;
 
