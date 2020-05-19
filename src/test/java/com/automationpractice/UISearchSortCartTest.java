@@ -81,7 +81,7 @@ public class UISearchSortCartTest extends BaseTest {
         //System.out.println("Saved Product: " + productNameText);
 
         WebElement productPrice = driver.findElement(By.xpath("//*[@id='center_column']/ul/li[1]/div/div[2]/div[1]/span[1]"));
-        //ока что получилось сделать только с таким икспасом, позже его порефакторю...
+        //пока что получилось сделать только с таким икспасом, позже его порефакторю...
         String productPriceText = productPrice.getText();
         //System.out.println("Saved Price: " + productPriceText);
 
@@ -105,7 +105,6 @@ public class UISearchSortCartTest extends BaseTest {
 
         Assert.assertEquals(productNameInCartText, productNameText);
         Assert.assertEquals(productPriceInCartText, productPriceText);
-
 
         // 9. используя аннотацию параметризации тестов, добавьте кроме 'Summer' сценарии поиска 'Dress' и 't-shirt'
     }
