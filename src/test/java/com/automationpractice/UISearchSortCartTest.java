@@ -73,12 +73,12 @@ public class UISearchSortCartTest extends BaseTest {
         // 6. берем первый из найденных товаров и запоминаем его полное название и цену
         WebElement productName = driver.findElement(By.xpath("//*[@id='center_column']//*[@class='product-name']"));
         String productNameText = productName.getText();
-        //System.out.println("Saved Product: " + productNameText);
+        System.out.println("Saved Product: " + productNameText);
 
         WebElement productPrice = driver.findElement(By.xpath("//*[@id='center_column']/ul/li[1]/div/div[2]/div[1]/span[1]"));
         //пока что получилось сделать только с таким икспасом, позже его порефакторю...
         String productPriceText = productPrice.getText();
-        //System.out.println("Saved Price: " + productPriceText);
+        System.out.println("Saved Price: " + productPriceText);
 
         // 7. добавляем его в корзину
         Actions action = new Actions(driver);
@@ -92,16 +92,19 @@ public class UISearchSortCartTest extends BaseTest {
 
         WebElement productNameInCart = driver.findElement(By.xpath("//td/p[@class='product-name']"));
         String productNameInCartText = productNameInCart.getText();
-        //System.out.println("Product name in cart: " + productNameInCartText);
+        System.out.println("Product name in cart: " + productNameInCartText);
 
         WebElement productPriceInCart = driver.findElement(By.xpath("//span[@class='price special-price']"));
         String productPriceInCartText = productPriceInCart.getText();
-        //System.out.println("Product price in cart: " + productPriceInCartText);
+        System.out.println("Product price in cart: " + productPriceInCartText);
 
         Assert.assertEquals(productNameInCartText, productNameText);
         Assert.assertEquals(productPriceInCartText, productPriceText);
 
+        driver.findElement(By.xpath("//*[@class='icon-trash']")).click();
+
         // 9. используя аннотацию параметризации тестов, добавьте кроме 'Summer' сценарии поиска 'Dress' и 't-shirt'
+        //(пока сделала через DataProvider)
     }
 
     @DataProvider(name = "searchQueryDataProvider")
