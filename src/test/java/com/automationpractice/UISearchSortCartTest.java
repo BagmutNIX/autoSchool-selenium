@@ -31,7 +31,7 @@ public class UISearchSortCartTest extends BaseTest {
         // 3. проверяем, что над списком продуктов отображается надпись 'SEARCH  "SUMMER"'
         WebElement searchResultLabel = driver.findElement(By.xpath("//span[@class='lighter']"));
         String searchResultLabelText = searchResultLabel.getText().replaceAll("\"", "");
-        Assert.assertEquals(searchResultLabelText, "SUMMER");
+        Assert.assertEquals(searchResultLabelText, query.toUpperCase());
 
         // 4. открываем дропдаун сортировки и выбираем опцию 'Price: Highest first'
         driver.findElement(By.xpath("//div[@id='uniform-selectProductSort']")).click();
