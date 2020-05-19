@@ -65,13 +65,15 @@ public class UISearchSortCartTest extends BaseTest {
         boolean isSorted = Ordering.natural().isOrdered(priceNumber);
         System.out.println("Is sorted: " + isSorted);
 
+        if (!isSorted)
+            System.out.println("Prices are sorted incorrect");
 
         Assert.assertEquals(isSorted, true);
-        if (isSorted = false) System.out.println("Prices are sorted incorrect");
 
         //List<Double> priceToDouble;
 
         // 6. берем первый из найденных товаров и запоминаем его полное название и цену
+
         // 7. добавляем его в корзину
         // 8. открываем корзину и сравниваем название и цену в "Unit price" на соответствие с сохраненными значениями
         // 9. используя аннотацию параметризации тестов, добавьте кроме 'Summer' сценарии поиска 'Dress' и 't-shirt'
