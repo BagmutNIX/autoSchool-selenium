@@ -78,19 +78,35 @@ public class UISearchSortCartTest extends BaseTest {
         // 6. берем первый из найденных товаров и запоминаем его полное название и цену
         WebElement productName = driver.findElement(By.xpath("//*[@id='center_column']//*[@class='product-name']"));
         String productNameText = productName.getText();
-        System.out.println("Saved Product: " + productNameText);
-        WebElement productPrice = driver.findElement(By.xpath("//span[@class='price product-price']"));
-        //WebElement productPrice = driver.findElement(By.xpath("//*[@id='center_column']/ul/li[1]/div/div[2]/div[1]/span[@class='price product-price']"));
+        //System.out.println("Saved Product: " + productNameText);
+
+        WebElement productPrice = driver.findElement(By.xpath("//*[@id='center_column']/ul/li[1]/div/div[2]/div[1]/span[1]"));
+        //ока что получилось сделать только с таким икспасом, позже его порефакторю...
         String productPriceText = productPrice.getText();
-        System.out.println("Saved Price: " + productPrice.toString());
+        //System.out.println("Saved Price: " + productPriceText);
+
         // 7. добавляем его в корзину
         Actions action = new Actions(driver);
         action.moveToElement(productName).build().perform();
         WebElement addToCartBtn = driver.findElement(By.xpath("//a[@title='Add to cart']"));
         addToCartBtn.click();
+
         // 8. открываем корзину и сравниваем название и цену в "Unit price" на соответствие с сохраненными значениями
         WebElement checkoutBtn = driver.findElement(By.xpath("//a[@title='Proceed to checkout']"));
         checkoutBtn.click();
+
+        WebElement productNameInCart = driver.findElement(By.xpath("//td/p[@class='product-name']"));
+        String productNameInCartText = productNameInCart.getText();
+        //System.out.println("Product name in cart: " + productNameInCartText);
+
+        WebElement productPriceInCart = driver.findElement(By.xpath("//span[@class='price special-price']"));
+        String productPriceInCartText = productPriceInCart.getText();
+        //System.out.println("Product price in cart: " + productPriceInCartText);
+
+        Assert.assertEquals(productNameInCartText, productNameText);
+        Assert.assertEquals(productPriceInCartText, productPriceText);
+
+
         // 9. используя аннотацию параметризации тестов, добавьте кроме 'Summer' сценарии поиска 'Dress' и 't-shirt'
     }
 }
