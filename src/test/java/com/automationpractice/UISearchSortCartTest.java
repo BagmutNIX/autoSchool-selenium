@@ -7,6 +7,7 @@ import com.sun.xml.internal.bind.v2.TODO;
 import net.bytebuddy.description.type.TypeDescription;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
@@ -83,6 +84,8 @@ public class UISearchSortCartTest extends BaseTest {
         String productPriceText = productPrice.getText();
         System.out.println("Saved Price: " + productPrice.toString());
         // 7. добавляем его в корзину
+        Actions action = new Actions(driver);
+        action.moveToElement(productName).build().perform();
         WebElement addToCartBtn = driver.findElement(By.xpath("//a[@title='Add to cart']"));
         addToCartBtn.click();
         // 8. открываем корзину и сравниваем название и цену в "Unit price" на соответствие с сохраненными значениями
