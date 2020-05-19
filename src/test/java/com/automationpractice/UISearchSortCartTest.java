@@ -3,34 +3,29 @@ package com.automationpractice;
 import com.core.BaseTest;
 import com.google.common.collect.Ordering;
 import com.sun.org.glassfish.gmbal.Description;
-import com.sun.xml.internal.bind.v2.TODO;
-import net.bytebuddy.description.type.TypeDescription;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
-
-import static java.util.Comparator.*;
 
 public class UISearchSortCartTest extends BaseTest {
 
     @Description("Perform tests: search, sort, add to cart")
-    @Test
-    public void uiSearchSortCartTest() throws InterruptedException {
+    //@Parameters(value = {"Dress", "t-shirt", "Summer"})
+    @Test(dataProvider = "searchQueryDataProvider")
+    public void uiSearchSortCartTest(String query) throws InterruptedException {
 
         // 1. открываем сайт http://automationpractice.com/
         driver.get(baseUrl);
 
         // 2. в поле поиска вводим ключевое слово: 'Summer' и нажимаем значок поиска (лупу)
         WebElement search = driver.findElement(By.xpath("//input[@id='search_query_top']"));
-        search.sendKeys("Summer");
+        search.sendKeys(query);
         driver.findElement(By.xpath("//button[@name='submit_search']")).click();
 
         // 3. проверяем, что над списком продуктов отображается надпись 'SEARCH  "SUMMER"'
@@ -107,5 +102,19 @@ public class UISearchSortCartTest extends BaseTest {
         Assert.assertEquals(productPriceInCartText, productPriceText);
 
         // 9. используя аннотацию параметризации тестов, добавьте кроме 'Summer' сценарии поиска 'Dress' и 't-shirt'
+    }
+
+    @DataProvider(name = "searchQueryDataProvider")
+    public Object[][] searchQueryDataProvider() {
+        List<String> data = new ArrayList<>();
+        data.add("Summer");
+        data.add("t-shirt");
+        data.add("Dress");
+
+        Object[][] result = new Object[data.size()][3];
+        for (int i = 0; i < data.size(); i++) {
+            result[i] = data.get(i).split(",");
+        }
+        return result;
     }
 }
