@@ -79,6 +79,9 @@ public class UISearchSortCartTest extends BaseTest {
         //пока что получилось сделать только с таким икспасом, позже его порефакторю...
         String productPriceText = productPrice.getText();
         System.out.println("Saved Price: " + productPriceText);
+        //Спешл прайс: *[@data-title = 'Unit price']/span/span[@class='price special-price']
+        //старый прайс: //*[@data-title = 'Unit price']/span/span[@class='old-price']
+        //прайс: //*[@data-title = 'Unit price']/span/span[@class='price']
 
         // 7. добавляем его в корзину
         Actions action = new Actions(driver);
@@ -118,6 +121,8 @@ public class UISearchSortCartTest extends BaseTest {
         for (int i = 0; i < data.size(); i++) {
             result[i] = data.get(i).split(",");
         }
+        System.out.println(result.toString());
         return result;
+
     }
 }
