@@ -89,7 +89,7 @@ public class UISearchSortCartTest extends BaseTest {
         WebElement addToCartBtn = driver.findElement(By.xpath("//a[@title='Add to cart']"));
         addToCartBtn.click();
 
-        // 8. открываем корзину и сравниваем название и цену в "Unit price" на соответствие с сохраненными значениями
+        // 8. Открываем корзину и сравниваем название и цену в колонке "Total" у товара, на соответствие с сохраненными значениями
         WebElement checkoutBtn = driver.findElement(By.xpath("//a[@title='Proceed to checkout']"));
         checkoutBtn.click();
 
@@ -97,7 +97,8 @@ public class UISearchSortCartTest extends BaseTest {
         String productNameInCartText = productNameInCart.getText();
         System.out.println("Product name in cart: " + productNameInCartText);
 
-        WebElement productPriceInCart = driver.findElement(By.xpath("//span[@class='price special-price']"));
+        //WebElement productPriceInCart = driver.findElement(By.xpath("//span[@class='price special-price']"));
+        WebElement productPriceInCart = driver.findElement(By.xpath("//td[@class='cart_total'][@data-title='Total']"));
         String productPriceInCartText = productPriceInCart.getText();
         System.out.println("Product price in cart: " + productPriceInCartText);
 
