@@ -13,7 +13,7 @@ public abstract class BaseTest {
     protected WebDriver driver;
     protected String baseUrl;
 
-    @BeforeClass()
+    @BeforeMethod()
     public void setUp() {
         driver = new ChromeDriver();
         baseUrl = "http://automationpractice.com/index.php";
@@ -23,7 +23,7 @@ public abstract class BaseTest {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
-    @AfterTest(alwaysRun = true)
+    @AfterMethod(alwaysRun = true)
     public void tearDown() {
         // Закрываем браузер (все окна)
         driver.quit();

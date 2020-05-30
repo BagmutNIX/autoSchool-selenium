@@ -75,8 +75,7 @@ public class UISearchSortCartTest extends BaseTest {
         String productNameText = productName.getText();
         System.out.println("Saved Product: " + productNameText);
 
-        WebElement productPrice = driver.findElement(By.xpath("//*[@id='center_column']//*/div/div[2]/div[1]/*[@class='price product-price']"));
-        //пока что получилось сделать только с таким икспасом, позже его порефакторю...
+        WebElement productPrice = driver.findElement(By.xpath("//*[@id='center_column']//*/div[1]/*[@class='price product-price']"));
         String productPriceText = productPrice.getText();
         System.out.println("Saved Price: " + productPriceText);
         //Спешл прайс: *[@data-title = 'Unit price']/span/span[@class='price special-price']
