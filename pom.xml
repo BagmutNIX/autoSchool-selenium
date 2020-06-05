@@ -37,6 +37,23 @@
                     <target>8</target>
                 </configuration>
             </plugin>
+<!--            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.7.0</version>
+                <configuration>
+                    <reportVersion>${allure-report.version}</reportVersion>
+                    <allureDownloadUrl>http://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/%s/allure-commandline-%s.zip</allureDownloadUrl>
+                </configuration>
+                &lt;!&ndash;
+                mvn allure:serve — сгенерить отчет и открыть в браузере
+                mvn allure:report — просто сгенерить отчет
+                По дефолту репорт генерируется в папке /target/site/allure-maven/index.html
+                <configuration>
+                <reportDirectory>allure-report</reportDirectory>
+                </configuration>
+                &ndash;&gt;
+            </plugin>-->
         </plugins>
     </build>
     <properties>
@@ -66,11 +83,24 @@
             <artifactId>testng</artifactId>
             <version>7.0.0</version>
         </dependency>
+
         <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>6.11</version>
-            <scope>test</scope>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>${allure.testng.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.qameta.atlas/atlas-webdriver -->
+<!--        <dependency>
+            <groupId>io.qameta.atlas</groupId>
+            <artifactId>atlas-webdriver</artifactId>
+            <version>1.7.0</version>
+        </dependency>-->
+        <!-- HTML elements -->
+        <dependency>
+            <groupId>io.qameta.htmlelements</groupId>
+            <artifactId>htmlelements</artifactId>
+            <version>${htmlelements.version}</version>
         </dependency>
     </dependencies>
 </project>

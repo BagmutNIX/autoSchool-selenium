@@ -1,4 +1,4 @@
-package com.automationpractice;
+package com.automationpracticeold;
 
 import com.core.BaseTest;
 import com.google.common.collect.Ordering;
@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UISearchSortCartTest extends BaseTest {
+public class UISearchSortCartTestOld extends BaseTest {
 
     @Description("Perform tests: search, sort, add to cart")
     //@Parameters(value = {"Dress", "t-shirt", "Summer"})
@@ -123,6 +123,5 @@ public class UISearchSortCartTest extends BaseTest {
         }
         System.out.println(result.toString());
         return result;
-
     }
 }
