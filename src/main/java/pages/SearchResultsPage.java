@@ -9,6 +9,9 @@ import javax.naming.directory.SearchResult;
 
 public interface SearchResultsPage extends WebPage {
 
+    @FindBy("//span[@class='lighter']")
+    HtmlElement searchLabel();
+
     @FindBy("//div[@id='uniform-selectProductSort']")
     HtmlElement sortDropdown();
 
