@@ -1,4 +1,4 @@
-package com.core;
+package core;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -17,6 +17,7 @@ public abstract class BaseTest {
     public void setUp() {
         driver = new ChromeDriver();
         baseUrl = "http://automationpractice.com/index.php";
+        //baseUrl = "http://automationpractice.com/index.php?controller=search&orderby=position&orderway=desc&search_query=summer&submit_search=";
         driver.manage().window().maximize();
 
         // Неявное ожидание (Implicit Waits)

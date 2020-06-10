@@ -1,6 +1,6 @@
 package com.automationpracticeold;
 
-import com.core.BaseTest;
+import core.BaseTest;
 import com.google.common.collect.Ordering;
 import com.sun.org.glassfish.gmbal.Description;
 import org.openqa.selenium.By;

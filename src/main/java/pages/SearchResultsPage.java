@@ -1,5 +1,6 @@
 package pages;
 
+import blocks.Product;
 import io.qameta.htmlelements.WebPage;
 import io.qameta.htmlelements.annotation.FindBy;
 import io.qameta.htmlelements.element.ExtendedList;
@@ -19,10 +20,10 @@ public interface SearchResultsPage extends WebPage {
     HtmlElement sortPriceDesc();
 
     @FindBy("//*[@id='center_column']//div[@class='product-container']")
-    ExtendedList<SearchResult> productList();
+    ExtendedList<Product> productList();
 
     @FindBy("//*[@id='center_column']//div[1][@class='content_price']")
-    ExtendedList<SearchResult> priceList();
+    ExtendedList<Product> priceList();
 
     @FindBy("//a[@title='Add to cart']")
     HtmlElement addToCartBtn();

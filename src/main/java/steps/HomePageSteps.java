@@ -5,30 +5,32 @@ import io.qameta.htmlelements.WebPageFactory;
 import org.openqa.selenium.WebDriver;
 import pages.BasePage;
 
+import static matchers.BaseElementMatchers.isDisplayed;
+
 public class HomePageSteps extends BaseSteps {
+
+    public WebDriver driver;
 
     public HomePageSteps(WebDriver driver) {
         super(driver);
     }
 
-    private String query;
+    //private String query;
 
-    public String getQuery() {
-        return query;
-    }
+    //public String getQuery() {
+    //return query;
+    //}
 
     // 2. в поле поиска вводим ключевое слово: 'Summer' и нажимаем значок поиска (лупу)
     @Step
-
     public HomePageSteps enterQueryToSearchInput(String query) {
-        this.query = query;
-        onBasePage().searchInput().sendKeys(query);
-        onBasePage().searchBtn().click();
+        //this.query = query;
+        onHomePage().searchInput().should(isDisplayed()).sendKeys(query);
+        onHomePage().searchBtn().should(isDisplayed()).click();
         return this;
     }
 
-    private BasePage onBasePage() {
+    private BasePage onHomePage() {
         return new WebPageFactory().get(driver, BasePage.class);
     }
-
 }
