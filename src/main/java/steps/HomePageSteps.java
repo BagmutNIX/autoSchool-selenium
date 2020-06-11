@@ -21,7 +21,7 @@ public class HomePageSteps extends BaseSteps {
     //return query;
     //}
 
-    // 2. в поле поиска вводим ключевое слово: 'Summer' и нажимаем значок поиска (лупу)
+    // 2. В поле поиска вводим ключевое слово query и нажимаем значок поиска (лупу)
     @Step
     public HomePageSteps enterQueryToSearchInput(String query) {
         //this.query = query;
