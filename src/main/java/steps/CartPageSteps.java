@@ -9,12 +9,12 @@ import pages.SearchResultsPage;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class CartPageSteps extends BaseSteps {
+public class CartPageSteps {
 
-    public WebDriver driver;
+    private WebDriver driver;
 
     public CartPageSteps(WebDriver driver) {
-        super(driver);
+        this.driver = driver;
     }
 
     // 8. Открываем корзину и сравниваем название и цену в колонке "Total" у товара,
@@ -22,7 +22,7 @@ public class CartPageSteps extends BaseSteps {
 
     @Step
     public CartPageSteps checkName(String nameFromSearchResults) {
-        String productNameInCart = onCartResultsPage().priceTotalInCart().getText();
+        String productNameInCart = onCartResultsPage().productNameInCart().getText();
         Assert.assertEquals(productNameInCart, nameFromSearchResults);
         return this;
     }

@@ -16,13 +16,15 @@ public interface Product extends ExtendedWebElement<Product> {
 
     //old price on search results page: //*[@id='center_column']//div[1]/*[@class='old-price product-price']
     //actual price on search results page: //*[@id='center_column']//div[1]/*[@class='price product-price']
+    //*[@id='center_column']//div[1][@class='content_price']/*[@class='price product-price']
 
     //old price on search results page option2:
     //*[@id='center_column']//div[1][@class='content_price']/span[@class='old-price product-price']
 
-    @FindBy("./*[@class='old-price product-price']")
+
+    @FindBy(".//div[1]/*[@class='old-price product-price']")
     HtmlElement productPriceOld();
 
-    @FindBy("./*[@class='price product-price']")
+    @FindBy(".//div[1]/*[@class='price product-price']")
     HtmlElement productPriceActual();
 }

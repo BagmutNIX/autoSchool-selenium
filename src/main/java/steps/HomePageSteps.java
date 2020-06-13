@@ -4,15 +4,16 @@ import io.qameta.allure.Step;
 import io.qameta.htmlelements.WebPageFactory;
 import org.openqa.selenium.WebDriver;
 import pages.BasePage;
+import pages.SearchResultsPage;
 
 import static matchers.BaseElementMatchers.isDisplayed;
 
-public class HomePageSteps extends BaseSteps {
+public class HomePageSteps {
 
-    public WebDriver driver;
+    private WebDriver driver;
 
     public HomePageSteps(WebDriver driver) {
-        super(driver);
+        this.driver = driver;
     }
 
     //private String query;
@@ -23,11 +24,11 @@ public class HomePageSteps extends BaseSteps {
 
     // 2. В поле поиска вводим ключевое слово query и нажимаем значок поиска (лупу)
     @Step
-    public HomePageSteps enterQueryToSearchInput(String query) {
+    public SearchResultsPageSteps enterQueryToSearchInput(String query) {
         //this.query = query;
-        onHomePage().searchInput().should(isDisplayed()).sendKeys(query);
-        onHomePage().searchBtn().should(isDisplayed()).click();
-        return this;
+        onHomePage().searchInput().sendKeys(query);
+        onHomePage().searchBtn().click();
+        return new SearchResultsPageSteps(driver);
     }
 
     private BasePage onHomePage() {

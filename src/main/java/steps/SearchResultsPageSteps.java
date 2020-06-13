@@ -1,23 +1,25 @@
 package steps;
 
+import blocks.Product;
 import com.google.common.collect.Ordering;
-import core.BaseTest;
 import io.qameta.allure.Step;
 import io.qameta.htmlelements.WebPageFactory;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
-import pages.BasePage;
 import pages.SearchResultsPage;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchResultsPageSteps extends BaseSteps {
+import static matchers.BaseElementMatchers.isDisplayed;
 
-    //public WebDriver driver;
+public class SearchResultsPageSteps {
+
+    private WebDriver driver;
 
     public SearchResultsPageSteps(WebDriver driver) {
-        super(driver);
+        this.driver = driver;
     }
 
     //private HomePageSteps query;
@@ -58,25 +60,31 @@ public class SearchResultsPageSteps extends BaseSteps {
         return this;
     }
 
-    // 6. берем первый из найденных товаров и запоминаем его полное название и цену
+    // 6. Берем первый из найденных товаров и запоминаем его полное название и цену
     @Step
-    public SearchResultsPageSteps saveNameOfFirstproduct() {
-
-        return this;
+    public String saveNameOfFirstproduct() {
+        List<Product> productList = onSearchResultsPage().productList();
+        String nameText = productList.get(0).should(isDisplayed()).productName().getText();
+        return nameText;
     }
 
     @Step
-    public SearchResultsPageSteps savePriceOfFirstproduct() {
-
-        return this;
+    public String savePriceOfFirstproduct() {
+        List<Product> productList = onSearchResultsPage().productList();
+        String priceText = productList.get(0).productPriceActual().should(isDisplayed()).getText();
+        return priceText;
     }
 
     // 7. добавляем его в корзину
+    //TODO добавлять именно первый - для этого нужно кнопку добавить в blocks
     @Step
-    public SearchResultsPageSteps addToCart() {
+    public CartPageSteps addToCart() {
+        List<Product> productList = onSearchResultsPage().productList();
+        Actions action = new Actions(driver);
+        action.moveToElement(productList.get(0)).build().perform();
         onSearchResultsPage().addToCartBtn().click();
         onSearchResultsPage().proceedToCheckoutBtn().click();
-        return this;
+        return new CartPageSteps(driver);
     }
 
     private SearchResultsPage onSearchResultsPage() {

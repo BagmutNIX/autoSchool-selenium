@@ -8,7 +8,6 @@ import steps.HomePageSteps;
 import steps.SearchResultsPageSteps;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 /*
         берем первый из найденных товаров и запоминаем его полное название и цену
@@ -30,16 +29,16 @@ public class UISearchSortCartTest extends BaseTest {
 
         homePageSteps
                 // 2. В поле поиска вводим ключевое слово query и нажимаем значок поиска (лупу)
-                .enterQueryToSearchInput(query);
-
-        searchResultsPageSteps
+                .enterQueryToSearchInput(query)
                 // 3. Проверяем, что над списком продуктов в надписи 'SEARCH' отображается наш поисковый запрос
                 .checkSearchLabel(query)
                 // 4. Открываем дропдаун сортировки и выбираем опцию 'Price: Highest first'
                 .sortByPriceDesc()
                 // 5. Проверяем, что элементы отсортированы в соответствии с выбранной опцией (сейчас сортировка идёт
                 // по старой цене - если у товара есть скидка, нужно смотреть на старую цену)
-                .checkSortPricesDesc();
+                .addToCart()
+                .checkName(searchResultsPageSteps.saveNameOfFirstproduct())
+                .checkPrice(searchResultsPageSteps.savePriceOfFirstproduct());
     }
 
     @DataProvider(name = "searchQuery")

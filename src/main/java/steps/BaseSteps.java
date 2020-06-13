@@ -7,10 +7,10 @@ public class BaseSteps {
 
     protected WebDriver driver;
     //protected String baseUrl;
-
-    public BaseSteps(WebDriver driver) {
+ public BaseSteps(WebDriver driver) {
         this.driver = driver;
     }
+
     //private BaseDataProvider dataProvider;
 
 
