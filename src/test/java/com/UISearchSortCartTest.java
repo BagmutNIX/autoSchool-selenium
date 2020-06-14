@@ -22,9 +22,7 @@ public class UISearchSortCartTest extends BaseTest {
 
         System.out.println(query);
 
-        String expectedName = searchResultsPageSteps.getNameOfFirstproduct();
-        String expectedPrice = searchResultsPageSteps.getPriceOfFirstproduct();
-        System.out.println("Name: " + expectedName + "; Price: " + expectedPrice);
+
 
         homePageSteps
                 // 2. В поле поиска вводим ключевое слово query и нажимаем значок поиска (лупу)
@@ -35,7 +33,13 @@ public class UISearchSortCartTest extends BaseTest {
                 .sortByPriceDesc()
                 // 5. Проверяем, что элементы отсортированы в соответствии с выбранной опцией (сейчас сортировка идёт
                 // по старой цене - если у товара есть скидка, нужно смотреть на старую цену)
-                .checkSortPricesDesc()
+                .checkSortPricesDesc();
+
+        String expectedName = searchResultsPageSteps.getNameOfFirstproduct();
+        String expectedPrice = searchResultsPageSteps.getPriceOfFirstproduct();
+        System.out.println("Expected Name: " + expectedName + "; Expected Price: " + expectedPrice);
+
+        searchResultsPageSteps
                 .addToCart()
                 .checkName(expectedName)
                 .checkPrice(expectedPrice)
@@ -46,8 +50,8 @@ public class UISearchSortCartTest extends BaseTest {
     public Object[][] searchQuery() {
         List<String> data = new ArrayList<>();
         data.add("Summer");
-        //data.add("t-shirt");
-        //data.add("Dress");
+        data.add("t-shirt");
+        data.add("Dress");
 
         Object[][] result = new Object[data.size()][3];
         for (int i = 0; i < data.size(); i++) {

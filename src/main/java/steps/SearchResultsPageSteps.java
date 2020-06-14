@@ -79,7 +79,7 @@ public class SearchResultsPageSteps {
     @Step
     public String getNameOfFirstproduct() {
         List<Product> productList = onSearchResultsPage().productList();
-        System.out.println("Product list size: " + productList.size());
+        //System.out.println("Product list size: " + productList.size());
         String nameText = productList.get(0).should(isDisplayed()).productName().getText();
         return nameText;
     }

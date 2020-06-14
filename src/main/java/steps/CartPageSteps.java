@@ -24,7 +24,7 @@ public class CartPageSteps {
     public CartPageSteps checkName(String nameFromSearchResults) {
         String productNameInCart = onCartResultsPage().productNameInCart().getText();
         System.out.println("Name in cart: " + productNameInCart);
-        Assert.assertEquals(productNameInCart, nameFromSearchResults);
+        Assert.assertEquals(nameFromSearchResults, productNameInCart);
         return this;
     }
 
@@ -32,7 +32,8 @@ public class CartPageSteps {
     public CartPageSteps checkPrice(String priceFromSearchResults) {
         String productPriceInCart = onCartResultsPage().priceTotalInCart().getText();
         System.out.println("Price in cart: " + productPriceInCart);
-        Assert.assertEquals(productPriceInCart, priceFromSearchResults);
+        //assertEquals(expected, actual);
+        Assert.assertEquals(priceFromSearchResults, productPriceInCart);
         return this;
     }
 
