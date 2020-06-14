@@ -31,6 +31,9 @@ public interface SearchResultsPage extends WebPage {
     @FindBy("//a[@title='Proceed to checkout']")
     HtmlElement proceedToCheckoutBtn();
 
+    @FindBy("//*[@id='center_column']//*[@class='product-name']")
+    HtmlElement productName();
+
     @FindBy("//*[@id='center_column']//div[1]/*[@class='price product-price']")
     HtmlElement actualPrice();
 

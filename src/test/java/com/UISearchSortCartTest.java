@@ -9,11 +9,6 @@ import steps.SearchResultsPageSteps;
 
 import java.util.ArrayList;
 import java.util.List;
-/*
-        берем первый из найденных товаров и запоминаем его полное название и цену
-        добавляем его в корзину
-        открываем корзину и сравниваем название и цену в колонке "Total" у товара, на соответствие с сохраненными значениями
-        используя аннотацию параметризации тестов, добавьте кроме 'Summer' сценарии поиска 'Dress' и 't-shirt'*/
 
 public class UISearchSortCartTest extends BaseTest {
 
@@ -27,6 +22,10 @@ public class UISearchSortCartTest extends BaseTest {
 
         System.out.println(query);
 
+        String expectedName = searchResultsPageSteps.getNameOfFirstproduct();
+        String expectedPrice = searchResultsPageSteps.getPriceOfFirstproduct();
+        System.out.println("Name: " + expectedName + "; Price: " + expectedPrice);
+
         homePageSteps
                 // 2. В поле поиска вводим ключевое слово query и нажимаем значок поиска (лупу)
                 .enterQueryToSearchInput(query)
@@ -36,17 +35,19 @@ public class UISearchSortCartTest extends BaseTest {
                 .sortByPriceDesc()
                 // 5. Проверяем, что элементы отсортированы в соответствии с выбранной опцией (сейчас сортировка идёт
                 // по старой цене - если у товара есть скидка, нужно смотреть на старую цену)
+                .checkSortPricesDesc()
                 .addToCart()
-                .checkName(searchResultsPageSteps.saveNameOfFirstproduct())
-                .checkPrice(searchResultsPageSteps.savePriceOfFirstproduct());
+                .checkName(expectedName)
+                .checkPrice(expectedPrice)
+                .deleteProduct();
     }
 
     @DataProvider(name = "searchQuery")
     public Object[][] searchQuery() {
         List<String> data = new ArrayList<>();
         data.add("Summer");
-        data.add("t-shirt");
-        data.add("Dress");
+        //data.add("t-shirt");
+        //data.add("Dress");
 
         Object[][] result = new Object[data.size()][3];
         for (int i = 0; i < data.size(); i++) {

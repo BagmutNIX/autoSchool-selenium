@@ -23,6 +23,7 @@ public class CartPageSteps {
     @Step
     public CartPageSteps checkName(String nameFromSearchResults) {
         String productNameInCart = onCartResultsPage().productNameInCart().getText();
+        System.out.println("Name in cart: " + productNameInCart);
         Assert.assertEquals(productNameInCart, nameFromSearchResults);
         return this;
     }
@@ -30,10 +31,12 @@ public class CartPageSteps {
     @Step
     public CartPageSteps checkPrice(String priceFromSearchResults) {
         String productPriceInCart = onCartResultsPage().priceTotalInCart().getText();
+        System.out.println("Price in cart: " + productPriceInCart);
         Assert.assertEquals(productPriceInCart, priceFromSearchResults);
         return this;
     }
 
+    // Удаляем продукт из корзины для продолжения проверки других продуктов
     @Step
     public CartPageSteps deleteProduct() {
         onCartResultsPage().trashInCart().click();
