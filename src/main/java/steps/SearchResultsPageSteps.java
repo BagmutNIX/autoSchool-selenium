@@ -12,6 +12,7 @@ import org.testng.Assert;
 import pages.SearchResultsPage;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -45,19 +46,33 @@ public class SearchResultsPageSteps {
 
     // 5. проверяем, что элементы отсортированы в соответствии с выбранной опцией (сейчас сортировка идёт по старой
     // цене - если у товара есть скидка, нужно смотреть на старую цену)
+
+    //public
+
     @Step
     public SearchResultsPageSteps checkSortPricesDesc() {
         //List<String> productPrice = Collections.singletonList(onSearchResultsPage().productList().toString());
         List<Product> productList = onSearchResultsPage().productList();
         List<Double> productPrice = new ArrayList<>();
-        for (int i = 0; i < productList.size(); i++) {
+
+/*        for (int i = 0; i < productList.size(); i++) {
             String price = productList.get(i).should(isDisplayed()).productPriceActual().getText().replace("$", "");
             try {
                 price = productList.get(i).should(isDisplayed()).productPriceOld().getText().replace("$", "");
+            } catch (Exception ex) {
             }
-            catch (Exception ex) {}
             productPrice.add(Double.valueOf(price));
-        }
+        }*/
+
+        productList.forEach(product -> {
+            String price = product.should(isDisplayed()).productPriceActual().getText().replace("$", "");
+            try {
+                price = product.should(isDisplayed()).productPriceOld().getText().replace("$", "");
+            } catch (Exception ex) {
+            }
+            productPrice.add(Double.valueOf(price));
+        });
+
         System.out.println("Saved prices:");
         for (int i = 0; i < productPrice.size(); i++) {
             System.out.println(productPrice.get(i));
