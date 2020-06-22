@@ -55,7 +55,7 @@ public class SearchResultsPageSteps {
         List<Product> productList = onSearchResultsPage().productList();
         List<Double> productPrice = new ArrayList<>();
 
-/*        for (int i = 0; i < productList.size(); i++) {
+        /* for (int i = 0; i < productList.size(); i++) {
             String price = productList.get(i).should(isDisplayed()).productPriceActual().getText().replace("$", "");
             try {
                 price = productList.get(i).should(isDisplayed()).productPriceOld().getText().replace("$", "");
@@ -65,12 +65,17 @@ public class SearchResultsPageSteps {
         }*/
 
         productList.forEach(product -> {
-            String price = product.should(isDisplayed()).productPriceActual().getText().replace("$", "");
+            String strPrice = product.should(isDisplayed()).productPriceActual().getText().replace("$", "");
             try {
-                price = product.should(isDisplayed()).productPriceOld().getText().replace("$", "");
+                strPrice = product.should(isDisplayed()).productPriceOld().getText().replace("$", "");
             } catch (Exception ex) {
             }
-            productPrice.add(Double.valueOf(price));
+            double price = 777.0;
+            try {
+                price = Double.valueOf(strPrice);
+            } catch (Exception ex) {
+            }
+            productPrice.add(price);
         });
 
         System.out.println("Saved prices:");
@@ -117,6 +122,10 @@ public class SearchResultsPageSteps {
         action.moveToElement(product).build().perform();
         onSearchResultsPage().addToCartBtn().click();
         onSearchResultsPage().proceedToCheckoutBtn().click();
+        //new Actions(this.driver).doubleClick(this.label).perform();
+        //new Actions(this.driver).moveToElement(productList.get(0)).perform();
+        //click(onSearchResultsPage().addToCartBtn());
+        //onSearchResultsPage().addToCartBtn().click();
         return new CartPageSteps(driver);
     }
 

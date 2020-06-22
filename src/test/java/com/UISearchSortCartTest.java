@@ -22,8 +22,6 @@ public class UISearchSortCartTest extends BaseTest {
 
         System.out.println(query);
 
-
-
         homePageSteps
                 // 2. В поле поиска вводим ключевое слово query и нажимаем значок поиска (лупу)
                 .enterQueryToSearchInput(query)

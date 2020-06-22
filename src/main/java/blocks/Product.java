@@ -27,4 +27,19 @@ public interface Product extends ExtendedWebElement<Product> {
 
     @FindBy(".//div[1]/*[@class='price product-price']")
     HtmlElement productPriceActual();
+
+   /*default List<Double> getPrice() {
+
+        List<Double> productPrice = new ArrayList<>();
+
+        productPrice.forEach(product -> {
+            String price = product.should(isDisplayed()).productPriceActual().getText().replace("$", "");
+            try {
+                price = product.should(isDisplayed()).productPriceOld().getText().replace("$", "");
+            } catch (Exception ex) {
+            }
+            productPrice.add(Double.valueOf(price));
+        });
+        return productPrice;
+    }*/
 }
