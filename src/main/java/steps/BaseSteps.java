@@ -2,7 +2,7 @@ package steps;
 
 import org.openqa.selenium.WebDriver;
 
-//пока не юзею этот класс. но я так понимаю, что должен быть всегда общий класс BaseSteps, от которого экстендятся остальнйе Steps
+//пока не юзaю этот класс. но я так понимаю, что должен быть всегда общий класс BaseSteps, от которого экстендятся остальнйе Steps
 public class BaseSteps {
 
     protected WebDriver driver;
@@ -12,6 +12,4 @@ public class BaseSteps {
     }
 
     //private BaseDataProvider dataProvider;
-
-
 }
