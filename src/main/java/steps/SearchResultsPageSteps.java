@@ -1,7 +1,6 @@
 package steps;
 
 import blocks.Product;
-import com.google.common.collect.Ordering;
 import io.qameta.allure.Step;
 import io.qameta.htmlelements.WebPageFactory;
 import org.openqa.selenium.By;
@@ -12,14 +11,10 @@ import org.testng.Assert;
 import pages.SearchResultsPage;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static java.util.Arrays.stream;
-import static java.util.stream.StreamSupport.stream;
-import static com.google.common.collect.Streams.stream;
 import static matchers.BaseElementMatchers.isDisplayed;
 
 public class SearchResultsPageSteps {
