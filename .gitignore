@@ -1,6 +1,6 @@
 *.iml
 tmp.txt
 /out/
-/allure-results/
 target/
 /.idea/
+/allure-results/
