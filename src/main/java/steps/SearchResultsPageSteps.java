@@ -15,7 +15,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import static java.util.Arrays.stream;
+import static java.util.stream.StreamSupport.stream;
+import static com.google.common.collect.Streams.stream;
 import static matchers.BaseElementMatchers.isDisplayed;
 
 public class SearchResultsPageSteps {
@@ -51,6 +55,28 @@ public class SearchResultsPageSteps {
 
     @Step
     public SearchResultsPageSteps checkSortPricesDesc() {
+
+        List<Product> productList = onSearchResultsPage().productList();
+
+        List<Double> productPrice = new ArrayList<>();
+
+        productPrice = productList.stream().map(Product::getPrice).collect(Collectors.toList());
+
+        System.out.println("Product Prices: " + productPrice);
+
+        List<Double> productPriceSorted = new ArrayList<>(productPrice);
+        Collections.sort(productPriceSorted, Collections.reverseOrder());
+
+        System.out.println("Sorted prices:");
+        for (int i = 0; i < productPriceSorted.size(); i++)
+            System.out.println(productPriceSorted.get(i));
+
+        Assert.assertEquals(productPrice, productPriceSorted);
+
+        return this;
+    }
+
+    public SearchResultsPageSteps checkSortPricesDescOldStep() {
         //List<String> productPrice = Collections.singletonList(onSearchResultsPage().productList().toString());
         List<Product> productList = onSearchResultsPage().productList();
         List<Double> productPrice = new ArrayList<>();
